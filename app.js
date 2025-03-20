@@ -19,12 +19,10 @@ app.use(cors());  // Ativa o CORS para todas as rotas
 
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  ssl: true,
-  tlsAllowInvalidCertificates: false, 
-});
+
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log("Conectado ao MongoDB Atlas!"))
+  .catch(err => console.error("Erro de conexão:", err));
 
 app.use('/api/complaints', complaintsRoute);
 
