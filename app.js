@@ -19,7 +19,12 @@ app.use(cors());  // Ativa o CORS para todas as rotas
 
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  ssl: true,
+  tlsAllowInvalidCertificates: false, 
+});
 
 app.use('/api/complaints', complaintsRoute);
 
